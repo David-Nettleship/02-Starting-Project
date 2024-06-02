@@ -1,0 +1,12 @@
+name: PR
+on:
+    pull_request:
+        types:
+            - opened
+    workflow_dispatch:
+jobs:
+    output:
+        runs-on: ubuntu-latest
+        steps:
+            - name: GH Context
+              run: echo "${{toJson(github.event)}}"
