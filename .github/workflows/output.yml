@@ -1,8 +1,17 @@
 name: Outputs
 on: workflow_dispatch
 jobs:
-    output:
+    create-output:
         runs-on: ubuntu-latest
+        outputs:
+            context: ${{steps.ctx.outputs.context}}
         steps:
             - name: GH Context
-              run: echo "${{toJson(github)}}"
+              id: ctx
+              run: echo "context=${{toJson(github.event.workflow)}}" >> $GITHUB_OUTPUT
+    display-output:
+        needs: create-output
+        runs-on: ubuntu-latest
+        steps:
+            - name: Echo
+              run: echo "${{needs.create-output.outputs.context}}"
