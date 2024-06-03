@@ -8,7 +8,7 @@ jobs:
         steps:
             - name: GH Context
               id: ctx
-              run: echo "context=${{toJson(github.event.workflow)}}" >> $GITHUB_OUTPUT
+              run: echo "context=${{toJson(github.event)}}" >> $GITHUB_OUTPUT
     display-output:
         needs: create-output
         runs-on: ubuntu-latest
