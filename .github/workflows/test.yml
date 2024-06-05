@@ -17,6 +17,8 @@ jobs:
                 node-version: 18
             - name: Load & Cache Deps
               uses: ./.github/actions/cached-deps
+              with:
+                caching: false
     build_and_deploy:
         needs: test
         runs-on: ubuntu-latest
