@@ -15,10 +15,8 @@ jobs:
               uses: actions/setup-node@v3
               with:
                 node-version: 18
-            - name: Install Dependencies
-              run: npm ci
-            - name: Run Tests
-              run: npm test
+            - name: Load & Cache Deps
+              uses: ./.github/actions/cached-deps
     build_and_deploy:
         needs: test
         runs-on: ubuntu-latest
